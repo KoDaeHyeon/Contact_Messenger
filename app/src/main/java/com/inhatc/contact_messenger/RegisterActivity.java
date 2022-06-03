@@ -6,12 +6,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Member;
 import java.util.HashMap;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity
                                implements View.OnClickListener {
@@ -20,7 +22,6 @@ public class RegisterActivity extends AppCompatActivity
     DatabaseReference myDB_Reference = null;
 
     HashMap<String, Object> Member_Value = null;
-    MemberInfo objMemberInfo=null;
 
     EditText edtRegID;
     EditText edtRegPW;
@@ -40,8 +41,9 @@ public class RegisterActivity extends AppCompatActivity
     String strLong;
     String strEmail;
     String strHeader = "Member Information";
+    String strNum;
 
-    int MemberNum;
+    int MemberNum=1234;
 
     Button btnRegId;
     Button btnRegSuccess;
@@ -86,23 +88,24 @@ public class RegisterActivity extends AppCompatActivity
                 strLong = edtRegLong.getText().toString();
                 strEmail = edtRegEmail.getText().toString();
 
-                Member_Value.put("No", 1111);
-                Member_Value.put("Name",strName);
-                Member_Value.put("ID",strID);
-                Member_Value.put("PW",strPW);
-                Member_Value.put("Phone",strLati);
+                Member_Value.put("Name",strID);
+                Member_Value.put("ID",strPW);
+                Member_Value.put("PW",strName);
+                Member_Value.put("Phone",strPhone);
                 Member_Value.put("Email",strEmail);
                 Member_Value.put("Lati",strLati);
                 Member_Value.put("Long",strLong);
 
+                mSet_FirebaseDatabase(true);
 
+                Toast.makeText(getApplicationContext(),"회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
 
         }
     }
 
     private void mSet_FirebaseDatabase(boolean bFlag){
         if(bFlag){
-
+            myDB_Reference.child(strHeader).child(String.valueOf(MemberNum)).setValue(Member_Value);
         }
     }
 }

@@ -11,7 +11,7 @@ public class MemberInfo {
 
     public int No;
     public String ID;
-    private String PW;
+    public String PW;
     public String Name;
     public String Phone;
     public String Email;
@@ -21,5 +21,29 @@ public class MemberInfo {
     public MemberInfo(){
 
     }
-    public MemberInfo(int num){this.No = num;}
+    public MemberInfo(int No, String ID, String PW, String Name, String Phone, String Email,
+                      String Lati, String Long){
+        this.No = No;
+        this.ID = ID;
+        this.PW=PW;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Email = Email;
+        this.Lati = Lati;
+        this.Long = Long;
+    }
+    public Map<String, Object> toMap(){
+        HashMap<String,Object> result = new HashMap<>();
+
+        result.put("No", No);
+        result.put("Name",ID);
+        result.put("ID",PW);
+        result.put("PW",Name);
+        result.put("Phone",Phone);
+        result.put("Email",Email);
+        result.put("Lati",Lati);
+        result.put("Long",Long);
+
+        return result;
+    }
 }
