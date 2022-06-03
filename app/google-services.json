@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "99751400138",
+    "project_id": "contactidlist",
+    "storage_bucket": "contactidlist.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99751400138:android:2d50b52032cdadadf39a33",
+        "android_client_info": {
+          "package_name": "com.inhatc.contact_messenger"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99751400138-615v932b6ck70epn2vbesslll4362oq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQpkWGhEH_ixgMRMVwbLxqjY6KDHm-ydc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "99751400138-615v932b6ck70epn2vbesslll4362oq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

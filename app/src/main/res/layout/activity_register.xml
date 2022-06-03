@@ -84,7 +84,7 @@
         app:layout_constraintVertical_bias="0.538" />
 
     <EditText
-        android:id="@+id/txt_regEmail"
+        android:id="@+id/edt_regEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -97,7 +97,7 @@
         app:layout_constraintVertical_bias="0.651" />
 
     <EditText
-        android:id="@+id/txt_regPhone"
+        android:id="@+id/edt_regPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -167,7 +167,7 @@
         app:layout_constraintVertical_bias="0.853" />
 
     <EditText
-        android:id="@+id/txt_regLati"
+        android:id="@+id/edt_regLati"
         android:layout_width="103dp"
         android:layout_height="41dp"
         android:ems="10"
@@ -180,7 +180,7 @@
         app:layout_constraintVertical_bias="0.852" />
 
     <EditText
-        android:id="@+id/txt_regLong"
+        android:id="@+id/edt_regLong"
         android:layout_width="103dp"
         android:layout_height="41dp"
         android:ems="10"
@@ -222,7 +222,7 @@
         app:layout_constraintVertical_bias="0.209" />
 
     <EditText
-        android:id="@+id/txt_regID"
+        android:id="@+id/edt_regID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -235,7 +235,7 @@
         app:layout_constraintVertical_bias="0.208" />
 
     <EditText
-        android:id="@+id/txt_regPW"
+        android:id="@+id/edt_regPW"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -248,7 +248,7 @@
         app:layout_constraintVertical_bias="0.293" />
 
     <EditText
-        android:id="@+id/txt_regPW2"
+        android:id="@+id/edt_regPW2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -261,7 +261,7 @@
         app:layout_constraintVertical_bias="0.358" />
 
     <EditText
-        android:id="@+id/txt_regName"
+        android:id="@+id/edt_regName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
