@@ -13,7 +13,6 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.lang.reflect.Member;
 import java.util.HashMap;
-import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity
                                implements View.OnClickListener {
@@ -31,6 +30,8 @@ public class RegisterActivity extends AppCompatActivity
     EditText edtRegPhone;
     EditText edtRegLati;
     EditText edtRegLong;
+    EditText edtRegFindQ;
+    EditText edtRegFindA;
 
     String strID;
     String strPW;
@@ -40,6 +41,8 @@ public class RegisterActivity extends AppCompatActivity
     String strLati;
     String strLong;
     String strEmail;
+    String strFindQ;
+    String strFindA;
     String strHeader = "Member Information";
     String strNum;
 
@@ -61,6 +64,8 @@ public class RegisterActivity extends AppCompatActivity
         edtRegLati = (EditText) findViewById(R.id.edt_regLati);
         edtRegLong = (EditText) findViewById(R.id.edt_regLong);
         edtRegEmail = (EditText)findViewById(R.id.edt_regEmail);
+        edtRegFindQ = (EditText)findViewById(R.id.edt_regQ);
+        edtRegFindA = (EditText)findViewById(R.id.edt_regA);
 
         btnRegId = (Button) findViewById(R.id.btn_regID);
         btnRegId.setOnClickListener(this);
@@ -87,14 +92,18 @@ public class RegisterActivity extends AppCompatActivity
                 strLati = edtRegLati.getText().toString();
                 strLong = edtRegLong.getText().toString();
                 strEmail = edtRegEmail.getText().toString();
+                strFindQ = edtRegFindQ.getText().toString();
+                strFindA = edtRegFindA.getText().toString();
 
-                Member_Value.put("Name",strID);
-                Member_Value.put("ID",strPW);
-                Member_Value.put("PW",strName);
+                Member_Value.put("Name",strName);
+                Member_Value.put("ID",strID);
+                Member_Value.put("PW",strPW);
                 Member_Value.put("Phone",strPhone);
                 Member_Value.put("Email",strEmail);
                 Member_Value.put("Lati",strLati);
                 Member_Value.put("Long",strLong);
+                Member_Value.put("FindQ",strFindQ);
+                Member_Value.put("FindA",strFindA);
 
                 mSet_FirebaseDatabase(true);
 
