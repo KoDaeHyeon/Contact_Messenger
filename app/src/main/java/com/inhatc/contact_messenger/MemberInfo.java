@@ -36,6 +36,31 @@ public class MemberInfo {
         this.FindQ = FindQ;
         this.FindA = FindA;
     }
+
+    public void set_MemberInfo(int No, String ID, String PW, String Name, String Phone, String Email,
+                      String Lati, String Long, String FindQ, String FindA){
+        this.No = No;
+        this.ID = ID;
+        this.PW=PW;
+        this.Name = Name;
+        this.Phone = Phone;
+        this.Email = Email;
+        this.Lati = Lati;
+        this.Long = Long;
+        this.FindQ = FindQ;
+        this.FindA = FindA;
+    }
+    public int get_No(){return No;};
+    public String get_ID(){return ID;};
+    public String get_PW(){return PW;};
+    public String get_Name(){return Name;};
+    public String get_Phone(){return Phone;};
+    public String get_Email(){return Email;};
+    public String get_Lati(){return Lati;};
+    public String get_Long(){return Long;};
+    public String get_FindQ(){return FindQ;};
+    public String get_FindA(){return FindA;};
+
     public Map<String, Object> toMap(){
         HashMap<String,Object> result = new HashMap<>();
 
