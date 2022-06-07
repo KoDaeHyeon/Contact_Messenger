@@ -59,7 +59,7 @@ public class RegisterActivity extends AppCompatActivity
     Button btnRegId;
     Button btnRegSuccess;
 
-    Boolean check = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -123,10 +123,7 @@ public class RegisterActivity extends AppCompatActivity
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String value = snapshot.getValue(String.class);
                         if(value!=null) {
-                            Log.e("test", value);
-                            Log.e("test", strID);
-                            check=false;
-                            Log.w("check 2", check.toString());
+
                             Toast.makeText(getApplicationContext(), "아이디 중복 검사를 해주세요.", Toast.LENGTH_SHORT).show();
                         }else {
                             if (!strID.equals("") && !strPW.equals("") && !strPW2.equals("") && !strID.equals("")
@@ -164,14 +161,8 @@ public class RegisterActivity extends AppCompatActivity
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String value = snapshot.getValue(String.class);
                             if(value!=null) {
-                                Log.e("test", value);
-                                Log.e("test", strID);
-                                check=false;
-                                Log.w("check 2", check.toString());
                                 Toast.makeText(getApplicationContext(), "이미 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
                             }else {
-                                check = true;
-                                Log.w("check 3", check.toString());
                                 Toast.makeText(getApplicationContext(), "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
                             }
                         }
