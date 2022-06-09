@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class MemberInfo {
 
-    public int No;
+    public String Uno;
     public String ID;
     public String PW;
     public String Name;
@@ -23,9 +23,9 @@ public class MemberInfo {
     public MemberInfo(){
 
     }
-    public MemberInfo(int No, String ID, String PW, String Name, String Phone, String Email,
+    public MemberInfo(String Uno, String ID, String PW, String Name, String Phone, String Email,
                       String Lati, String Long, String FindQ, String FindA){
-        this.No = No;
+        this.Uno = Uno;
         this.ID = ID;
         this.PW=PW;
         this.Name = Name;
@@ -37,9 +37,14 @@ public class MemberInfo {
         this.FindA = FindA;
     }
 
-    public void set_MemberInfo(int No, String ID, String PW, String Name, String Phone, String Email,
+    public void set (MemberInfo memberInfo){
+        set_MemberInfo(memberInfo.Uno, memberInfo.ID, memberInfo.PW, memberInfo.Name, memberInfo.Phone, memberInfo.Email,
+                memberInfo.Lati, memberInfo.Long, memberInfo.FindQ, memberInfo.FindA);
+    }
+
+    public void set_MemberInfo(String Uno, String ID, String PW, String Name, String Phone, String Email,
                       String Lati, String Long, String FindQ, String FindA){
-        this.No = No;
+        this.Uno = Uno;
         this.ID = ID;
         this.PW=PW;
         this.Name = Name;
@@ -50,7 +55,7 @@ public class MemberInfo {
         this.FindQ = FindQ;
         this.FindA = FindA;
     }
-    public int get_No(){return No;};
+    public String get_Uno(){return Uno;};
     public String get_ID(){return ID;};
     public String get_PW(){return PW;};
     public String get_Name(){return Name;};
@@ -64,7 +69,7 @@ public class MemberInfo {
     public Map<String, Object> toMap(){
         HashMap<String,Object> result = new HashMap<>();
 
-        result.put("No", No);
+        result.put("UNo", Uno);
         result.put("Name",ID);
         result.put("ID",PW);
         result.put("PW",Name);

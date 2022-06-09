@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.Serializable;
 import java.lang.reflect.Member;
 
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button btnRegister;
     private Button btnLogin;
+    private Button btnQA;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnRegister = (Button)findViewById(R.id.btn_register);
         btnRegister.setOnClickListener(this);
+
+        btnQA = (Button)findViewById(R.id.btn_find);
+        btnQA.setOnClickListener(this);
 
         myFirebase = FirebaseDatabase.getInstance();
         myDB_Reference = myFirebase.getReference();
@@ -69,8 +75,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         if(value!=null) {
                             if(value.ID.equals(strID) && value.PW.equals(strPWD)){
                                 Intent contentMain = new Intent(MainActivity.this, MainContent.class);
+                                //액티비티를 통해 계정 정보 전달
+                                contentMain.putExtra("myInfo", value.ID);
                                 startActivity(contentMain);
                                 Toast.makeText(getApplicationContext(), value.Name + "님 어서오세요", Toast.LENGTH_SHORT).show();
+                                finish(); //로그인 성공하면 액티비티 종료
                             }else{
                                 Toast.makeText(getApplicationContext(), "로그인 정보를 확인해 주세요", Toast.LENGTH_SHORT).show();
                             }
@@ -89,6 +98,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         else if(v== btnRegister){
             Intent registerIntent = new Intent(MainActivity.this, RegisterActivity.class);
             startActivity(registerIntent);
+        }
+        else if(v== btnQA){
+            Intent findQAIntent = new Intent(MainActivity.this, FindIDPW.class);
+            startActivity(findQAIntent);
         }
     }
 }

@@ -105,8 +105,11 @@ public class RegisterActivity extends AppCompatActivity
                 strFindQ = edtRegFindQ.getText().toString().trim();
                 strFindA = edtRegFindA.getText().toString().trim();
                 Uno=(int)(Math.random() * (9999-1000+1))+1000;
+                String strUno = String.valueOf(Uno);
+                //회원 보안용 식별번호 랜덤 4자리 생성
+                // 적어놓은 정보 HashMap에 put
                 Member_Value.clear();
-                Member_Value.put("Uno",Uno);
+                Member_Value.put("Uno",strUno);
                 Member_Value.put("Name",strName);
                 Member_Value.put("ID",strID);
                 Member_Value.put("PW",strPW);
@@ -116,22 +119,24 @@ public class RegisterActivity extends AppCompatActivity
                 Member_Value.put("Long",strLong);
                 Member_Value.put("FindQ",strFindQ);
                 Member_Value.put("FindA",strFindA);
-
-                IDoverlap();
+                
+                //파이어베이스에 쓴 ID 객체가 있는지 확인
                 myDB_Reference.child(strHeader).child(strID).child("ID").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String value = snapshot.getValue(String.class);
                         if(value!=null) {
-
+                            //이미 아이디가 있다면
                             Toast.makeText(getApplicationContext(), "아이디 중복 검사를 해주세요.", Toast.LENGTH_SHORT).show();
                         }else {
+                            //아이디가 없으면 ID, PW, PW2, 이름, 폰번호, 질문, 답 써져있는지 확인
                             if (!strID.equals("") && !strPW.equals("") && !strPW2.equals("") && !strID.equals("")
                                     && !strName.equals("") && !strPhone.equals("")) {
                                 if (strPW.equals(strPW2)) {
                                     if (!strFindQ.equals("") && !strFindA.equals("")) {
                                         mSet_FirebaseDatabase(true);
                                         Toast.makeText(getApplicationContext(), "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
+                                        finish();
                                     } else {
                                         Toast.makeText(getApplicationContext(), "찾기 질문/답을 입력해주세요.", Toast.LENGTH_SHORT).show();
                                     }
@@ -154,6 +159,7 @@ public class RegisterActivity extends AppCompatActivity
                 break;
 
             case R.id.btn_regID:
+                //ID 중복검사
                 strID = edtRegID.getText().toString().trim();
                 if(!strID.equals("")) {
 ;                   myDB_Reference.child(strHeader).child(strID).child("ID").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -186,8 +192,5 @@ public class RegisterActivity extends AppCompatActivity
         }
     }
 
-    public void IDoverlap(){
 
-
-    }
 }
