@@ -139,8 +139,6 @@ public class ContentAdd extends AppCompatActivity
                         } else {
                             //메인화면을 새로 열면서 새로고침 역할ㅅ
                             myDB_Reference.child(strHeader).child(strPhone).setValue(Content_Value);
-                            Intent myInfoIntent = new Intent(ContentAdd.this, MainContent.class);
-                            startActivity(myInfoIntent);
                             Toast.makeText(getApplicationContext(), "추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }
