@@ -9,13 +9,15 @@
     <TextView
         android:id="@+id/lbl_title"
         android:layout_width="0dp"
-        android:layout_height="103dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="172dp"
         android:background="#FF5722"
         android:gravity="fill"
         android:text="Content_Messenger"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="40dp"
+        app:layout_constraintBottom_toTopOf="@+id/check_box"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -105,5 +107,15 @@
         android:textColor="#FFFFFF"
         app:layout_constraintBaseline_toBaselineOf="@+id/btn_find"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <CheckBox
+        android:id="@+id/check_box"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="368dp"
+        android:text="로봇이 아닙니다"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/edt_PWD" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
