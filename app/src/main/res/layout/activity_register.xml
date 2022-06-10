@@ -148,14 +148,6 @@
                         android:ems="10"
                         android:inputType="phone" />
 
-                    <Button
-                        android:id="@+id/btn_regPhone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:backgroundTint="#FF5722"
-                        android:text="중복확인"
-                        android:textColor="#FFFFFF" />
                 </LinearLayout>
 
                 <LinearLayout
