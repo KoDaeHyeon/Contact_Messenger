@@ -95,7 +95,7 @@ public class ContactAdd extends AppCompatActivity
                                         edtAddLati.setText(contact.Lati);
                                         edtAddLong.setText(contact.Long);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 확인ㅅㄷ해주세요.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
@@ -136,7 +136,7 @@ public class ContactAdd extends AppCompatActivity
                         if (value != null) {
                             Toast.makeText(getApplicationContext(), "이미 등록되어있는 번호입니다.", Toast.LENGTH_SHORT).show();
                         } else {
-                            //메인화면을 새로 열면서 새로고침 역할
+                            //추가후 닫기
                             myDB_Reference.child(strHeader).child(strPhone).setValue(Contact_Value);
                             Toast.makeText(getApplicationContext(), "추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                             finish();

@@ -72,12 +72,6 @@
                 android:background="#FFC107"
                 android:text="연락처 추가" />
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="106dp"
-                android:layout_height="wrap_content"
-                android:background="#FFC107"
-                android:text="Button" />
         </LinearLayout>
 
     </LinearLayout>

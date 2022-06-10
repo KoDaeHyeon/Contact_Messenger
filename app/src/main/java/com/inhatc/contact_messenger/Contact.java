@@ -49,4 +49,9 @@ public class Contact {
         return result;
     };
 
+    public void set(Contact c){
+        set_ContactInfo(c.Uno, c.ID,  c.Name, c.Phone, c.Email,
+                c.Lati, c.Long);
+    }
+
 }

@@ -22,8 +22,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.protobuf.StringValue;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MainContact extends AppCompatActivity
         implements View.OnClickListener{
@@ -62,10 +64,14 @@ public class MainContact extends AppCompatActivity
         listView = (ListView)findViewById(R.id.Contact_View);
         listView.setAdapter(adapter);
 
+        //특정 연락처를 클릭했을때
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(MainContact.this,contactPhone.get(i), Toast.LENGTH_SHORT).show();
+                Intent contactInfo = new Intent(MainContact.this, ContactInfo.class);
+                contactInfo.putExtra("contactInfo", contactPhone.get(i));
+                contactInfo.putExtra("myInfo", myAccount.ID);
+                startActivity(contactInfo);
             }
         });
 
@@ -88,11 +94,12 @@ public class MainContact extends AppCompatActivity
                         }
                         lblMainTop.setText(myAccount.Name+ "님 어서오세요.");
 
-                        // 연락처 데이터를 불러와서 리스트뷰에 표시ㅅㄷ
+                        // 연락처 데이터를 불러와서 리스트뷰에 표시
                         myFirebase.getReference(myAccount.ID + " ContactList").addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 contactList.clear();
+                                contactPhone.clear();
                                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
                                     String sPhone = dataSnapshot.child("Phone").getValue(String.class);
                                     String sValue = dataSnapshot.child("Name").getValue(String.class)
@@ -119,7 +126,6 @@ public class MainContact extends AppCompatActivity
 
     @Override
     public void onClick(View view) {
-        Log.e("click", myAccount.ID);
         if(view == btnMyInfo){
             Intent myInfoIntent = new Intent(MainContact.this, MyInfo.class);
             myInfoIntent.putExtra("myInfo", myAccount.ID);
@@ -153,30 +159,33 @@ public class MainContact extends AppCompatActivity
                                     myAccount.set(value);
                                 }
                                 lblMainTop.setText(myAccount.Name+ "님 어서오세요.");
-                                //연락처 목록 새로고침
-                                myFirebase.getReference("test1" + " ContactList").addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        contactList.clear();
-                                        for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                                            String sValue = dataSnapshot.child("Name").getValue(String.class);
-                                            contactList.add(sValue);
-                                            Log.e("name",sValue);
-                                        }
-                                        listView.setAdapter(adapter);
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
                             }
                             @Override
                             public void onCancelled(@NonNull DatabaseError error) {
                                 Log.w("Tag: ","Failed to read value",error.toException());
                             }
                         });
+                //연락처 목록 새로고침
+                myFirebase.getReference(myAccount.ID + " ContactList").addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        contactList.clear();
+                        contactPhone.clear();
+                        for(DataSnapshot dataSnapshot: snapshot.getChildren()){
+                            String sPhone = dataSnapshot.child("Phone").getValue(String.class);
+                            String sValue = dataSnapshot.child("Name").getValue(String.class)
+                                    +"\t\t" + sPhone;
+                            contactList.add(sValue);
+                            contactPhone.add(sPhone);
+                        }
+                        listView.setAdapter(adapter);
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
 
             @Override
