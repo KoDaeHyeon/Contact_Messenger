@@ -100,10 +100,18 @@ public class ContactInfo extends AppCompatActivity {
                 dialIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(dialIntent);
             } else if (view == btnContactMap) {
+                String Lati = txtContactLati.getText().toString().trim();
+                String Long = txtContactLong.getText().toString().trim();
                 if (txtContactLati.getText().equals("") || txtContactLong.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "위치 정보가 정확하지 않습니다.", Toast.LENGTH_SHORT).show();
-                } else {
-
+                    Toast.makeText(getApplicationContext(), "위치 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                } else if(!isStringDouble(Lati) || !isStringDouble(Long)){
+                    Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Intent MapIntent = new Intent(ContactInfo.this,MapsActivity.class);
+                    MapIntent.putExtra("Lati",Lati);
+                    MapIntent.putExtra("Long",Long);
+                    startActivity(MapIntent);
                 }
 
             } else if (view == btnContactModify) {
@@ -117,6 +125,15 @@ public class ContactInfo extends AppCompatActivity {
                 finish();
             }
 
+        }
+
+        public boolean isStringDouble(String s) {
+            try {
+                Double.parseDouble(s);
+                return true;
+            } catch (NumberFormatException e) {
+                return false;
+            }
         }
     };
 }

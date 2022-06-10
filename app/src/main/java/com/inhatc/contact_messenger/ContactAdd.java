@@ -128,6 +128,8 @@ public class ContactAdd extends AppCompatActivity
 
             if(strName.equals("") || strPhone.equals("")) {
                 Toast.makeText(getApplicationContext(), "필수 입력 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+            }else if(!isStringDouble(strLati) || !isStringDouble(strLong)){
+                Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
             }else {
                 myDB_Reference.child(strHeader).child(strPhone).child("Phone").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -150,6 +152,13 @@ public class ContactAdd extends AppCompatActivity
                 });
             }
         }
-
+    }
+    public boolean isStringDouble(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
     }
 }

@@ -206,7 +206,7 @@
                         android:layout_width="103dp"
                         android:layout_height="41dp"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="textPersonName" />
 
                     <TextView
                         android:id="@+id/lbl_regLong"
@@ -221,7 +221,7 @@
                         android:layout_width="103dp"
                         android:layout_height="41dp"
                         android:ems="10"
-                        android:inputType="number" />
+                        android:inputType="textPersonName" />
 
                 </LinearLayout>
 

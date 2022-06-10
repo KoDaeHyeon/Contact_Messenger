@@ -134,9 +134,13 @@ public class RegisterActivity extends AppCompatActivity
                                     && !strName.equals("") && !strPhone.equals("")) {
                                 if (strPW.equals(strPW2)) {
                                     if (!strFindQ.equals("") && !strFindA.equals("")) {
-                                        mSet_FirebaseDatabase(true);
-                                        Toast.makeText(getApplicationContext(), "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
-                                        finish();
+                                        if(!isStringDouble(strLati) || !isStringDouble(strLong)){
+                                            Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                                        }else {
+                                            mSet_FirebaseDatabase(true);
+                                            Toast.makeText(getApplicationContext(), "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
+                                            finish();
+                                        }
                                     } else {
                                         Toast.makeText(getApplicationContext(), "찾기 질문/답을 입력해주세요.", Toast.LENGTH_SHORT).show();
                                     }
@@ -189,6 +193,15 @@ public class RegisterActivity extends AppCompatActivity
     private void mSet_FirebaseDatabase(boolean bFlag){
         if(bFlag){
             myDB_Reference.child(strHeader).child(strID).setValue(Member_Value);
+        }
+    }
+
+    public boolean isStringDouble(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
