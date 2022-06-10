@@ -3,7 +3,6 @@ package com.inhatc.contact_messenger;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -19,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-public class ContentAdd extends AppCompatActivity
+public class ContactAdd extends AppCompatActivity
                                 implements View.OnClickListener{
 
     EditText edtAddID;
@@ -37,7 +36,7 @@ public class ContentAdd extends AppCompatActivity
     String strEmail;
     String strLati;
     String strLong;
-    String strHeader = "contentList";
+    String strHeader = "ContactList";
 
     Button btnAddGrab;
     Button btnAddSuccess;
@@ -45,16 +44,16 @@ public class ContentAdd extends AppCompatActivity
     FirebaseDatabase myFirebase;
     DatabaseReference myDB_Reference=null;
 
-    HashMap<String, Object> Content_Value = new HashMap<>();
+    HashMap<String, Object> Contact_Value = new HashMap<>();
 
-    Content content = new Content();
+    Contact contact = new Contact();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_content_add);
+        setContentView(R.layout.activity_contact_add);
 
-        strHeader = getIntent().getStringExtra("myInfo") + " ContentList";
+        strHeader = getIntent().getStringExtra("myInfo") + " ContactList";
 
         myFirebase = FirebaseDatabase.getInstance();
         myDB_Reference = myFirebase.getReference();
@@ -88,13 +87,13 @@ public class ContentAdd extends AppCompatActivity
                                 MemberInfo value = snapshot.getValue(MemberInfo.class);
                                 if (value != null) {
                                     if (value.Uno.equals(strNo) && value.ID.equals(strID)) {
-                                        content.set_ContentInfo(value.Uno, value.ID, value.Name, value.Phone,
+                                        contact.set_ContactInfo(value.Uno, value.ID, value.Name, value.Phone,
                                                 value.Email, value.Lati, value.Long);
-                                        edtAddName.setText(content.Name);
-                                        edtAddPhone.setText(content.Phone);
-                                        edtAddEmail.setText(content.Email);
-                                        edtAddLati.setText(content.Lati);
-                                        edtAddLong.setText(content.Long);
+                                        edtAddName.setText(contact.Name);
+                                        edtAddPhone.setText(contact.Phone);
+                                        edtAddEmail.setText(contact.Email);
+                                        edtAddLati.setText(contact.Lati);
+                                        edtAddLong.setText(contact.Long);
                                     }else{
                                         Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
                                     }
@@ -117,14 +116,14 @@ public class ContentAdd extends AppCompatActivity
             strLati = edtAddLati.getText().toString().trim();
             strLong = edtAddLong.getText().toString().trim();
 
-            Content_Value.clear();
-            Content_Value.put("Uno",strNo);
-            Content_Value.put("Name",strName);
-            Content_Value.put("ID",strID);
-            Content_Value.put("Phone",strPhone);
-            Content_Value.put("Email",strEmail);
-            Content_Value.put("Lati",strLati);
-            Content_Value.put("Long",strLong);
+            Contact_Value.clear();
+            Contact_Value.put("Uno",strNo);
+            Contact_Value.put("Name",strName);
+            Contact_Value.put("ID",strID);
+            Contact_Value.put("Phone",strPhone);
+            Contact_Value.put("Email",strEmail);
+            Contact_Value.put("Lati",strLati);
+            Contact_Value.put("Long",strLong);
 
 
             if(strName.equals("") || strPhone.equals("")) {
@@ -137,8 +136,8 @@ public class ContentAdd extends AppCompatActivity
                         if (value != null) {
                             Toast.makeText(getApplicationContext(), "이미 등록되어있는 번호입니다.", Toast.LENGTH_SHORT).show();
                         } else {
-                            //메인화면을 새로 열면서 새로고침 역할ㅅ
-                            myDB_Reference.child(strHeader).child(strPhone).setValue(Content_Value);
+                            //메인화면을 새로 열면서 새로고침 역할
+                            myDB_Reference.child(strHeader).child(strPhone).setValue(Contact_Value);
                             Toast.makeText(getApplicationContext(), "추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                             finish();
                         }

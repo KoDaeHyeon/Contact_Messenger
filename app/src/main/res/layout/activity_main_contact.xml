@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainContent">
+    tools:context=".MainContact">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -51,8 +51,9 @@
                     android:orientation="vertical">
 
                     <ListView
+                        android:id="@+id/Contact_View"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                        android:layout_height="492dp" />
                 </LinearLayout>
             </ScrollView>
 
@@ -65,7 +66,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btn_ContentAdd"
+                android:id="@+id/btn_ContactAdd"
                 android:layout_width="109dp"
                 android:layout_height="wrap_content"
                 android:background="#FFC107"

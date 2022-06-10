@@ -16,13 +16,13 @@
             android:name=".FindIDPW"
             android:exported="false" />
         <activity
-            android:name=".ContentAdd"
+            android:name=".ContactAdd"
             android:exported="false" />
         <activity
             android:name=".MyInfo"
             android:exported="false" />
         <activity
-            android:name=".MainContent"
+            android:name=".MainContact"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
