@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -36,7 +37,10 @@ public class MainContact extends AppCompatActivity
 
     ListView listView;
 
+    //리스트뷰에 쓸 문자열 리스트
     ArrayList<String> contactList = new ArrayList<>();
+    //연락처 정보에 쓸 폰넘버 리스트
+    ArrayList<String> contactPhone = new ArrayList<>();
     ArrayAdapter<String> adapter;
 
     Button btnMyInfo;
@@ -58,6 +62,12 @@ public class MainContact extends AppCompatActivity
         listView = (ListView)findViewById(R.id.Contact_View);
         listView.setAdapter(adapter);
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Toast.makeText(MainContact.this,contactPhone.get(i), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //사용자의 정보 변경사항이 있으면 정보 불러옴 ex)이름 변경 -> 정보를 다시불러와 변경된 이름 출력
         initDatabase();
@@ -84,8 +94,11 @@ public class MainContact extends AppCompatActivity
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 contactList.clear();
                                 for(DataSnapshot dataSnapshot: snapshot.getChildren()){
-                                    String sValue = dataSnapshot.child("Name").getValue(String.class);
+                                    String sPhone = dataSnapshot.child("Phone").getValue(String.class);
+                                    String sValue = dataSnapshot.child("Name").getValue(String.class)
+                                                +"\t\t" + sPhone;
                                     contactList.add(sValue);
+                                    contactPhone.add(sPhone);
                                 }
                                 listView.setAdapter(adapter);
                             }
