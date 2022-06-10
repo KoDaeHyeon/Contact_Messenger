@@ -159,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(registerIntent);
         }
         else if(v== btnQA){
-            Intent findQAIntent = new Intent(MainActivity.this, FindIDPW.class);
+            Intent findQAIntent = new Intent(MainActivity.this, FindPW.class);
             startActivity(findQAIntent);
         }
     }

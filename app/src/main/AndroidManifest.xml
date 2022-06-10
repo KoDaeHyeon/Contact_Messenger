@@ -40,7 +40,7 @@
             android:name=".ContactInfo"
             android:exported="false" />
         <activity
-            android:name=".FindIDPW"
+            android:name=".FindPW"
             android:exported="false" />
         <activity
             android:name=".ContactAdd"

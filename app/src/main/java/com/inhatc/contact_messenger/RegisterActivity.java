@@ -187,6 +187,31 @@ public class RegisterActivity extends AppCompatActivity
                 }
                 break;
 
+            case R.id.btn_regPhone:
+                //전화번호 중복검사
+                strPhone = edtRegPhone.getText().toString().trim();
+                if(!strID.equals("")) {
+                    myDB_Reference.child(strHeader).child(strID).child("Phone").addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String value = snapshot.getValue(String.class);
+                            if(value!=null) {
+                                Toast.makeText(getApplicationContext(), "이미 있는 번호입니다.", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(getApplicationContext(), "사용 가능한 번호입니다.", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.w("Tag: ","Failed to read value",error.toException());
+
+                        }
+                    });
+                }else{
+                    Toast.makeText(getApplicationContext(),"전화번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                }
+                break;
+
         }
     }
 
@@ -195,6 +220,7 @@ public class RegisterActivity extends AppCompatActivity
             myDB_Reference.child(strHeader).child(strID).setValue(Member_Value);
         }
     }
+
 
     public boolean isStringDouble(String s) {
         try {
