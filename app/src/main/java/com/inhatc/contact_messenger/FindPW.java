@@ -85,8 +85,10 @@ public class FindPW extends AppCompatActivity implements View.OnClickListener{
                                         //ID, Name, PhoneNumber가 맞다면 해당 유저의 질문 출력
                                         lblFindQprint.setText(value.FindQ);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 확인해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "사용자 정보를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                                     }
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "사용자 정보를 확인해 주세요.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override
@@ -100,7 +102,12 @@ public class FindPW extends AppCompatActivity implements View.OnClickListener{
         //비밀번호 검색 클릭 시 이벤트
         if(view == btnFindPW){
             strA = edtFindA.getText().toString().trim();
-            if(strA.equals("")){
+            strID = edtFindID.getText().toString().trim();
+            strName = edtFindName.getText().toString().trim();
+            strPhone = edtFindPhoneNum.getText().toString().trim();
+            if(strID.equals("") || strName.equals("") || strPhone.equals("")) {
+                Toast.makeText(getApplicationContext(), "사용자 정보 조회를 해주세요.", Toast.LENGTH_SHORT).show();
+            }else if(strA.equals("")){
                 Toast.makeText(getApplicationContext(), "답변을 입력해주세요", Toast.LENGTH_SHORT).show();
             } else {
                 myDB_Reference.child("Member Information").child(strID).
@@ -115,6 +122,8 @@ public class FindPW extends AppCompatActivity implements View.OnClickListener{
                                     }else{
                                         Toast.makeText(getApplicationContext(), "질문에 대한 답변이 틀립니다. 답변을 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
                                     }
+                                }else{
+                                    Toast.makeText(getApplicationContext(), "사용자 정보 조회를 해주세요.", Toast.LENGTH_SHORT).show();
                                 }
                             }
                             @Override
