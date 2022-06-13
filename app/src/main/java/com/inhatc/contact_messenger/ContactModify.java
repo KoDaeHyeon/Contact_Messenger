@@ -105,7 +105,8 @@ public class ContactModify extends AppCompatActivity implements View.OnClickList
             strID = edtModifyID.getText().toString().trim();
             strNo = edtModifyNo.getText().toString().trim();
             if(strID.equals("") || strNo.equals("")){
-                Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.",
+                        Toast.LENGTH_SHORT).show();
             }else {
                 myDB_Reference.child("Member Information").child(strID).
                         addListenerForSingleValueEvent(new ValueEventListener() {
@@ -114,15 +115,16 @@ public class ContactModify extends AppCompatActivity implements View.OnClickList
                                 MemberInfo value = snapshot.getValue(MemberInfo.class);
                                 if (value != null) {
                                     if (value.Uno.equals(strNo) && value.ID.equals(strID)) {
-                                        contact.set_ContactInfo(value.Uno, value.ID, value.Name, value.Phone,
-                                                value.Email, value.Lati, value.Long);
+                                        contact.set_ContactInfo(value.Uno, value.ID, value.Name,
+                                                value.Phone,value.Email, value.Lati, value.Long);
                                         edtModifyName.setText(contact.Name);
                                         edtModifyPhone.setText(contact.Phone);
                                         edtModifyEmail.setText(contact.Email);
                                         edtModifyLati.setText(contact.Lati);
                                         edtModifyLong.setText(contact.Long);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.",
+                                        Toast.makeText(getApplicationContext(),
+                                                "아이디와 유저번호를 입력해주세요.",
                                                 Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -155,9 +157,11 @@ public class ContactModify extends AppCompatActivity implements View.OnClickList
 
 
             if(strName.equals("") || strPhone.equals("")) {
-                Toast.makeText(getApplicationContext(), "필수 입력 정보를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "필수 입력 정보를 입력해주세요.",
+                        Toast.LENGTH_SHORT).show();
             }else if(!isStringDouble(strLati) || !isStringDouble(strLong)){
-                Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.",
+                        Toast.LENGTH_SHORT).show();
             }else {
 
                 //전화번호가 변경되지 않았다면
@@ -166,22 +170,26 @@ public class ContactModify extends AppCompatActivity implements View.OnClickList
                     myDB_Reference.child(strHeader).child(strContact).setValue(null);
                     myDB_Reference.child(strHeader).child(strPhone).setValue(Contact_Value);
                     //연락처 목록으로
-                    Toast.makeText(getApplicationContext(), "변경이 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "변경이 완료 되었습니다.",
+                            Toast.LENGTH_SHORT).show();
                     finish();
                 }else {
                     //전화번호가 변경되있다면 기존에 있는 번호인지 확인
-                    myDB_Reference.child(strHeader).child(strPhone).child("Phone").addListenerForSingleValueEvent(new ValueEventListener() {
+                    myDB_Reference.child(strHeader).child(strPhone).child("Phone").
+                            addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String value = snapshot.getValue(String.class);
                             if (value != null) {
-                                Toast.makeText(getApplicationContext(), "이미 등록되어있는 번호입니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "이미 등록되어있는 번호입니다.", Toast.LENGTH_SHORT).show();
                             } else {
                                 //기존 정보 삭제 후 수정된 정보 추가
                                 myDB_Reference.child(strHeader).child(strContact).setValue(null);
                                 myDB_Reference.child(strHeader).child(strPhone).setValue(Contact_Value);
                                 //연락처 목록으로
-                                Toast.makeText(getApplicationContext(), "변경이 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "변경이 완료 되었습니다.", Toast.LENGTH_SHORT).show();
                                 finish();
 
 
