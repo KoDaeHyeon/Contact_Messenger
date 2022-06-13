@@ -120,7 +120,8 @@ public class FindPW extends AppCompatActivity implements View.OnClickListener{
                                     if (value.FindA.equals(strA)) {
                                         lblFindPW.setText("이용자 님의 비밀번호는 " + value.PW + " 입니다.");
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "질문에 대한 답변이 틀립니다. 답변을 다시 확인해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "질문에 대한 답변이 틀립니다. 답변을 다시 확인해주세요.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }else{
                                     Toast.makeText(getApplicationContext(), "사용자 정보 조회를 해주세요.", Toast.LENGTH_SHORT).show();

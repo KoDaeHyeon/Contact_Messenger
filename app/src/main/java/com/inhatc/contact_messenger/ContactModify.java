@@ -122,7 +122,8 @@ public class ContactModify extends AppCompatActivity implements View.OnClickList
                                         edtModifyLati.setText(contact.Lati);
                                         edtModifyLong.setText(contact.Long);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 입력해주세요.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
 
