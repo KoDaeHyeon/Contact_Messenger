@@ -95,7 +95,8 @@ public class ContactAdd extends AppCompatActivity
                                         edtAddLati.setText(contact.Lati);
                                         edtAddLong.setText(contact.Long);
                                     }else{
-                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 확인ㅅㄷ해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "아이디와 유저번호를 확인해주세요.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
 

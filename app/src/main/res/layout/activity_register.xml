@@ -237,7 +237,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="bottom"
-                        android:text="아이디/비밀번호 찾기 질문/답"
+                        android:text="비밀번호 찾기 질문/답"
                         android:textAlignment="viewStart"
                         android:textColor="#000000"
                         android:textSize="25dp" />

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     EditText edtID;
     EditText edtPWD;
 
+    boolean captchaBool = false;
     String strID;
     String strPWD;
 
@@ -72,12 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         myFirebase = FirebaseDatabase.getInstance();
         myDB_Reference = myFirebase.getReference();
 
-        //Assign Variable
-        //승인 변수
         checkBox = findViewById(R.id.check_box);
 
-        //Create Google Api Client
-        //Api 생성
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(SafetyNet.API)
                 .addConnectionCallbacks(MainActivity.this)
@@ -100,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                                 ,"Successfully Varified..."
                                                 ,Toast.LENGTH_SHORT).show();
                                         checkBox.setTextColor(Color.GREEN);
+                                        captchaBool = true;
                                     }
                                 }
                             });
@@ -123,34 +121,39 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(v==btnLogin){
             strID =  edtID.getText().toString().trim();
             strPWD = edtPWD.getText().toString().trim();
-            if(strID.equals("") || strPWD.equals("")){
-                Toast.makeText(getApplicationContext(), "로그인 정보를 입력해 주세요.", Toast.LENGTH_SHORT).show();
-            }else{
-                myDB_Reference.child(strHeader).child(strID).addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        MemberInfo value = snapshot.getValue(MemberInfo.class);
-                        if(value!=null) {
-                            if(value.ID.equals(strID) && value.PW.equals(strPWD)){
-                                Intent contentMain = new Intent(MainActivity.this, MainContact.class);
-                                //액티비티를 통해 계정 정보 전달
-                                contentMain.putExtra("myInfo", value.ID);
-                                startActivity(contentMain);
-                                Toast.makeText(getApplicationContext(), value.Name + "님 어서오세요", Toast.LENGTH_SHORT).show();
-                                finish(); //로그인 성공하면 액티비티 종료
-                            }else{
+            if(!captchaBool) {
+                Toast.makeText(getApplicationContext(), "캡챠 인증을 해주세요.", Toast.LENGTH_SHORT).show();
+            }else {
+                if (strID.equals("") || strPWD.equals("")) {
+                    Toast.makeText(getApplicationContext(), "로그인 정보를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                } else {
+                    myDB_Reference.child(strHeader).child(strID).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            MemberInfo value = snapshot.getValue(MemberInfo.class);
+                            if (value != null) {
+                                if (value.ID.equals(strID) && value.PW.equals(strPWD)) {
+                                    Intent contentMain = new Intent(MainActivity.this, MainContact.class);
+                                    //액티비티를 통해 계정 정보 전달
+                                    contentMain.putExtra("myInfo", value.ID);
+                                    startActivity(contentMain);
+                                    Toast.makeText(getApplicationContext(), value.Name + "님 어서오세요", Toast.LENGTH_SHORT).show();
+                                    finish(); //로그인 성공하면 액티비티 종료
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "로그인 정보를 확인해 주세요", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
                                 Toast.makeText(getApplicationContext(), "로그인 정보를 확인해 주세요", Toast.LENGTH_SHORT).show();
                             }
-                        }else {
-                            Toast.makeText(getApplicationContext(), "로그인 정보를 확인해 주세요", Toast.LENGTH_SHORT).show();
                         }
-                    }
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-                        Log.w("Tag: ","Failed to read value",error.toException());
 
-                    }
-                });
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            Log.w("Tag: ", "Failed to read value", error.toException());
+
+                        }
+                    });
+                }
             }
         }
 
