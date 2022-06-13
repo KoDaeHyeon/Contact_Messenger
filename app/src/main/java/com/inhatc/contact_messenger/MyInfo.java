@@ -139,10 +139,14 @@ public class MyInfo extends AppCompatActivity implements View.OnClickListener {
                     && !strName.equals("") && !strPhone.equals("")) {
                 if (strPW.equals(strPW2)) {
                     if (!strFindQ.equals("") && !strFindA.equals("")) {
+                        if(!isStringDouble(strLati) || !isStringDouble(strLong)){
+                            Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                        }else {
 
-                        myDB_Reference.child(strHeader).child(strID).setValue(Member_Value);
+                            myDB_Reference.child(strHeader).child(strID).setValue(Member_Value);
 
-                        finish();
+                            finish();
+                        }
 
                     } else {
                         Toast.makeText(getApplicationContext(), "찾기 질문/답을 입력해주세요.", Toast.LENGTH_SHORT).show();
@@ -153,6 +157,15 @@ public class MyInfo extends AppCompatActivity implements View.OnClickListener {
             } else {
                 Toast.makeText(getApplicationContext(), "정보를 입력해 주세요", Toast.LENGTH_SHORT).show();
             }
+        }
+    }
+
+    public boolean isStringDouble(String s) {
+        try {
+            Double.parseDouble(s);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
         }
     }
 
