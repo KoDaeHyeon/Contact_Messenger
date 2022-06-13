@@ -95,7 +95,8 @@ public class MainContact extends AppCompatActivity
                         lblMainTop.setText(myAccount.Name+ "님 어서오세요.");
 
                         // 연락처 데이터를 불러와서 리스트뷰에 표시
-                        myFirebase.getReference(myAccount.ID + " ContactList").addValueEventListener(new ValueEventListener() {
+                        myFirebase.getReference(myAccount.ID + " ContactList").
+                                addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
                                 contactList.clear();

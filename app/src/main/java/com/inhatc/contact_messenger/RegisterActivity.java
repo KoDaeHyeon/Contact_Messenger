@@ -121,34 +121,47 @@ public class RegisterActivity extends AppCompatActivity
                 Member_Value.put("FindA",strFindA);
                 
                 //파이어베이스에 쓴 ID 객체가 있는지 확인
-                myDB_Reference.child(strHeader).child(strID).child("ID").addListenerForSingleValueEvent(new ValueEventListener() {
+                myDB_Reference.child(strHeader).child(strID).child("ID")
+                        .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         String value = snapshot.getValue(String.class);
                         if(value!=null) {
                             //이미 아이디가 있다면
-                            Toast.makeText(getApplicationContext(), "아이디 중복 검사를 해주세요.", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "아이디 중복 검사를 해주세요.",
+                                    Toast.LENGTH_SHORT).show();
                         }else {
                             //아이디가 없으면 ID, PW, PW2, 이름, 폰번호, 질문, 답 써져있는지 확인
-                            if (!strID.equals("") && !strPW.equals("") && !strPW2.equals("") && !strID.equals("")
+                            if (!strID.equals("") && !strPW.equals("")
+                                    && !strPW2.equals("") && !strID.equals("")
                                     && !strName.equals("") && !strPhone.equals("")) {
                                 if (strPW.equals(strPW2)) {
                                     if (!strFindQ.equals("") && !strFindA.equals("")) {
                                         if(!isStringDouble(strLati) || !isStringDouble(strLong)){
-                                            Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),
+                                                    "위치 정보가 실수가 아닙니다.",
+                                                    Toast.LENGTH_SHORT).show();
                                         }else {
                                             mSet_FirebaseDatabase(true);
-                                            Toast.makeText(getApplicationContext(), "회원가입 되었습니다.", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),
+                                                    "회원가입 되었습니다.",
+                                                    Toast.LENGTH_SHORT).show();
                                             finish();
                                         }
                                     } else {
-                                        Toast.makeText(getApplicationContext(), "찾기 질문/답을 입력해주세요.", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(),
+                                                "찾기 질문/답을 입력해주세요.",
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "비밀번호를 확인해 주세요.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(),
+                                            "비밀번호를 확인해 주세요.",
+                                            Toast.LENGTH_SHORT).show();
                                 }
                             } else {
-                                Toast.makeText(getApplicationContext(), "정보를 입력해 주세요", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "정보를 입력해 주세요",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -166,14 +179,19 @@ public class RegisterActivity extends AppCompatActivity
                 //ID 중복검사
                 strID = edtRegID.getText().toString().trim();
                 if(!strID.equals("")) {
-;                   myDB_Reference.child(strHeader).child(strID).child("ID").addListenerForSingleValueEvent(new ValueEventListener() {
+;                   myDB_Reference.child(strHeader).child(strID).child("ID")
+                            .addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             String value = snapshot.getValue(String.class);
                             if(value!=null) {
-                                Toast.makeText(getApplicationContext(), "이미 있는 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "이미 있는 아이디입니다.",
+                                        Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(getApplicationContext(), "사용 가능한 아이디입니다.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),
+                                        "사용 가능한 아이디입니다.",
+                                        Toast.LENGTH_SHORT).show();
                             }
                         }
                         @Override
@@ -183,7 +201,9 @@ public class RegisterActivity extends AppCompatActivity
                         }
                     });
                 }else{
-                    Toast.makeText(getApplicationContext(),"아이디를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            "아이디를 입력해 주세요.",
+                            Toast.LENGTH_SHORT).show();
                 }
                 break;
 

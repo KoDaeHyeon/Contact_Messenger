@@ -38,12 +38,13 @@ public class MemberInfo {
     }
 
     public void set (MemberInfo memberInfo){
-        set_MemberInfo(memberInfo.Uno, memberInfo.ID, memberInfo.PW, memberInfo.Name, memberInfo.Phone, memberInfo.Email,
-                memberInfo.Lati, memberInfo.Long, memberInfo.FindQ, memberInfo.FindA);
+        set_MemberInfo(memberInfo.Uno, memberInfo.ID, memberInfo.PW, memberInfo.Name,
+                memberInfo.Phone, memberInfo.Email,memberInfo.Lati, memberInfo.Long,
+                memberInfo.FindQ, memberInfo.FindA);
     }
 
-    public void set_MemberInfo(String Uno, String ID, String PW, String Name, String Phone, String Email,
-                      String Lati, String Long, String FindQ, String FindA){
+    public void set_MemberInfo(String Uno, String ID, String PW, String Name, String Phone,
+                               String Email,String Lati, String Long, String FindQ, String FindA){
         this.Uno = Uno;
         this.ID = ID;
         this.PW=PW;

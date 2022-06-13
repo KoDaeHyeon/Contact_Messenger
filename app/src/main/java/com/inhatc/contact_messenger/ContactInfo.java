@@ -96,16 +96,19 @@ public class ContactInfo extends AppCompatActivity {
     View.OnClickListener btn_listener = new View.OnClickListener() {
         public void onClick(View view){
             if (view == btnContactCall) {
-                Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel: " + txtContactPhone.getText()));
+                Intent dialIntent = new Intent(Intent.ACTION_CALL, Uri.parse("tel: " +
+                        txtContactPhone.getText()));
                 dialIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(dialIntent);
             } else if (view == btnContactMap) {
                 String Lati = txtContactLati.getText().toString().trim();
                 String Long = txtContactLong.getText().toString().trim();
                 if (txtContactLati.getText().equals("") || txtContactLong.getText().equals("")) {
-                    Toast.makeText(getApplicationContext(), "위치 정보가 입력되지 않았습니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "위치 정보가 입력되지 않았습니다.",
+                            Toast.LENGTH_SHORT).show();
                 } else if(!isStringDouble(Lati) || !isStringDouble(Long)){
-                    Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "위치 정보가 실수가 아닙니다.",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else{
                     Intent MapIntent = new Intent(ContactInfo.this,MapsActivity.class);

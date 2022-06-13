@@ -16,8 +16,8 @@ public class Contact {
 
     }
 
-    public void set_ContactInfo(String Uno, String ID, String Name, String Phone, String Email,
-                               String Lati, String Long){
+    public void set_ContactInfo(String Uno, String ID, String Name, String Phone,
+                                String Email, String Lati, String Long){
         this.Uno = Uno;
         this.ID = ID;
         this.Name = Name;
